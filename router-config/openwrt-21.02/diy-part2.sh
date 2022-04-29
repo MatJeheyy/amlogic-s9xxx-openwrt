@@ -52,3 +52,18 @@ svn co https://github.com/hubutui/p7zip-lede/trunk package/lean/p7zip
 # 移除 SNAPSHOT 标签
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
+
+
+# modemusb
+git clone https://github.com/4IceG/luci-app-3ginfo-lite.git package/new/luci-app-3ginfo-lite
+
+# php7
+git clone https://github.com/kea/openwrt-php7-package.git package/new/php7
+
+# Autocore Stb
+git clone https://github.com/MatJehey/autocore-arm-x86.git package/new/luci-app-autocore
+
+# AutoCore
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/lean/autocore
+rm -rf ./feeds/packages/utils/coremark
+svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark

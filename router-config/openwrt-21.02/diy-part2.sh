@@ -47,3 +47,8 @@ svn co https://github.com/hubutui/p7zip-lede/trunk package/lean/p7zip
 # git apply ../router-config/patches/{0001*,0002*}.patch --directory=feeds/luci
 #
 # ------------------------------- Other ends -------------------------------
+
+
+# 移除 SNAPSHOT 标签
+sed -i 's,-SNAPSHOT,,g' include/version.mk
+sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in

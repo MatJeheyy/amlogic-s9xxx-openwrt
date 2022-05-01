@@ -62,9 +62,10 @@ sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
 # AutoCore
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/lean/autocore
+svn export https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/lean/autocore
+sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/lean/autocore/files/generic/luci-mod-status-autocore.json
 rm -rf ./feeds/packages/utils/coremark
-svn co https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
+svn export https://github.com/immortalwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 
 # libernet
 git clone https://github.com/helmiau/helmiwrt-packages.git package/new/libernet

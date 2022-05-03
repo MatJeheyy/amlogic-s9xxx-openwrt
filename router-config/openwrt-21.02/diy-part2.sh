@@ -55,53 +55,7 @@ svn co https://github.com/hubutui/p7zip-lede/trunk package/lean/p7zip
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 
-######################################################################################################################
 
-# ChinaDNS
-git clone -b luci --depth 1 https://github.com/QiuSimons/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
-
-# Passwall
-#svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-passwall package/new/luci-app-passwall
-svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/new/luci-app-passwall
-pushd package/new/luci-app-passwall
-sed -i 's,default n,default y,g' Makefile
-sed -i '/trojan-go/d' Makefile
-sed -i '/v2ray-core/d' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/xray-plugin/d' Makefile
-sed -i '/shadowsocks-libev-ss-redir/d' Makefile
-sed -i '/shadowsocks-libev-ss-server/d' Makefile
-sed -i '/shadowsocks-libev-ss-local/d' Makefile
-#sed -i 's,iptables-legacy,iptables-nft,g' Makefile
-popd
-wget -P package/new/luci-app-passwall/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
-chmod -R 755 ./package/new/luci-app-passwall/move_2_services.sh
-pushd package/new/luci-app-passwall
-bash move_2_services.sh
-popd
-rm -rf ./feeds/packages/net/https-dns-proxy
-svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
-svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
-svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
-# passwall2
-svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/new/luci-app-passwall2
-wget -P package/new/luci-app-passwall2/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
-chmod -R 755 ./package/new/luci-app-passwall2/move_2_services.sh
-pushd package/new/luci-app-passwall2
-bash move_2_services.sh
-popd
-pushd package/new/luci-app-passwall2
-sed -i 's,default n,default y,g' Makefile
-sed -i 's,+v2ray-core ,,g' Makefile
-sed -i '/v2ray-plugin/d' Makefile
-sed -i '/shadowsocks-libev-ss-redir/d' Makefile
-sed -i '/shadowsocks-libev-ss-server/d' Makefile
-sed -i '/shadowsocks-libev-ss-local/d' Makefile
 
 ####################################################################################################################################
 
@@ -268,3 +222,53 @@ git clone https://github.com/4IceG/luci-app-3ginfo-lite.git package/new/luci-app
 
 #################################################################################################################################
 
+######################################################################################################################
+
+# ChinaDNS
+git clone -b luci --depth 1 https://github.com/QiuSimons/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+
+# Passwall
+#svn export https://github.com/immortalwrt/luci/trunk/applications/luci-app-passwall package/new/luci-app-passwall
+svn export https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/new/luci-app-passwall
+pushd package/new/luci-app-passwall
+sed -i 's,default n,default y,g' Makefile
+sed -i '/trojan-go/d' Makefile
+sed -i '/v2ray-core/d' Makefile
+sed -i '/v2ray-plugin/d' Makefile
+sed -i '/xray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
+sed -i '/shadowsocks-libev-ss-local/d' Makefile
+#sed -i 's,iptables-legacy,iptables-nft,g' Makefile
+popd
+wget -P package/new/luci-app-passwall/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
+chmod -R 755 ./package/new/luci-app-passwall/move_2_services.sh
+pushd package/new/luci-app-passwall
+bash move_2_services.sh
+popd
+rm -rf ./feeds/packages/net/https-dns-proxy
+svn export https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
+svn export https://github.com/QiuSimons/OpenWrt-Add/trunk/trojan-plus package/new/trojan-plus
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn export https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/new/hysteria
+# passwall2
+svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/new/luci-app-passwall2
+wget -P package/new/luci-app-passwall2/ https://github.com/QiuSimons/OpenWrt-Add/raw/master/move_2_services.sh
+chmod -R 755 ./package/new/luci-app-passwall2/move_2_services.sh
+pushd package/new/luci-app-passwall2
+bash move_2_services.sh
+popd
+pushd package/new/luci-app-passwall2
+sed -i 's,default n,default y,g' Makefile
+sed -i 's,+v2ray-core ,,g' Makefile
+sed -i '/v2ray-plugin/d' Makefile
+sed -i '/shadowsocks-libev-ss-redir/d' Makefile
+sed -i '/shadowsocks-libev-ss-server/d' Makefile
+sed -i '/shadowsocks-libev-ss-local/d' Makefile
+
+
+####
